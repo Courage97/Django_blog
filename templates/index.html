@@ -1,0 +1,85 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore creativity, technology, and inspiration at C.WORLD.">
+    <meta name="author" content="Courage World">
+
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="Home" class="logo">C.WORLD</a>
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Blog</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Welcome to C.WORLD</h1>
+            <p>Explore Our Universe of Ideas and Stories</p>
+        </div>
+    </header>
+
+    <main class="posts container">
+        <h1>Latest Blog</h1>
+        <div class="post-grid">
+            {%for blog in blogs reversed %}
+            <article class="post-card">
+                <h2>{{blog.title}}</h2>
+                <div class="post-meta">
+                    <i class="far fa-calendar"></i>
+                    <span>{{blog.created_time}}</span>
+                    <i class="far fa-user"></i>
+                    <span>Admin</span>
+                </div>
+                <div class="post-content">
+                    <p>{{blog.body |truncatewords:20}}</p>
+                </div>
+                <a href="{% url 'details' pk=blog.id %}" class="read-more">Read More</a>
+            </article>
+            {% endfor %}
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About C.WORLD</h3>
+                    <p>Exploring creativity, technology, and inspiration through thoughtful content and engaging stories.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <p style="margin-top: 2rem;">&copy; 2024 C.WORLD. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>
